@@ -1,0 +1,19 @@
+A handful of snippits I've written and saved for future reference. I haven't nailed down the structure yet. I'm just getting a general repo in a scm for use at work/home/play
+
+bq. "Snippits!"
+
+h2. CSharp
+Contains Functions/Notes and other oddities I've pulled from daily development.
+
+
+h2. SQL
+SQL scripts I've written and again used for reference
+
+
+h2. Help out!
+
+I'm sure there are many ways to tackle certain situations. I'm open to improvement and any ideas you may have. If you would like to contribute, don't hesitate to fork and send pull requests!
+
+
+Thank you so much!
+
