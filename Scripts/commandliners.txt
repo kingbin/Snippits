@@ -1,0 +1,4 @@
+# Convert _svn folders to .svn within a directory and all subdirectories 
+find . -type d -name "_svn" | sed -e 'p;s/_svn/.svn/g' | xargs -n2 mv
+
+
