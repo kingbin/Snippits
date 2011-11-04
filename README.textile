@@ -3,10 +3,12 @@ A handful of snippits I've written and saved for future reference. I haven't nai
 bq. "Snippits!"
 
 h2. CSharp
+
 Contains Functions/Notes and other oddities I've pulled from daily development.
 
 
 h2. SQL
+
 SQL scripts I've written and again used for reference
 
 
