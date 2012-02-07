@@ -1,0 +1,90 @@
+http://haacked.com/archive/2011/02/27/templated-razor-delegates.aspx
+@{
+  Func<dynamic, object> b = @<strong>@item</strong>;
+}
+<span>This sentence is @b("In Bold").</span>
+
+
+
+
+
+helper function
+
+public static class RazorExtensions {
+    public static HelperResult List<T>(this IEnumerable<T> items, 
+      Func<T, HelperResult> template) {
+        return new HelperResult(writer => {
+            foreach (var item in items) {
+                template(item).WriteTo(writer);
+            }
+        });
+    }
+}
+
+
+
+
+
+
+@{
+  var items = new[] { "one", "two", "three" };
+}
+
+<ul>
+@items.List(@<li>@item</li>)
+</ul>
+
+
+
+
+
+@{
+    var comics = new[] { 
+        new ComicBook {Title = "Groo", Publisher = "Dark Horse Comics"},
+        new ComicBook {Title = "Spiderman", Publisher = "Marvel"}
+    };
+}
+
+<table>
+@comics.List(
+  @<tr>
+    <td>@item.Title</td>
+    <td>@item.Publisher</td>
+  </tr>)
+</table>
+
+
+
+
+
+http://blog.dotsmart.net/2011/11/22/once-helper-for-asp-net-mvc/
+
+@Html.Once("some unique key", @<div>arbitrary markup that gets rendered just once</div>)
+
+
+using System;
+using System.Web.Mvc;
+using System.Web.WebPages;
+
+namespace Foo
+{
+    public static class HtmlUtils
+    {
+        public static HelperResult Once(this HtmlHelper html, string key, Func<object, HelperResult> template)
+        {
+            var httpContextItems = html.ViewContext.HttpContext.Items;
+            var contextKey = "HtmlUtils.Once." + key;
+            if (!httpContextItems.Contains(contextKey))
+            {
+                // Render and record the fact in HttpContext.Items
+                httpContextItems.Add(contextKey, null);
+                return template(null);
+            }
+            else
+            {
+                // Do nothing, already rendered something with that key
+                return new HelperResult(writer => { /*no-op*/ });
+            }
+        }
+    }
+}
