@@ -1,0 +1,22 @@
+Sub Scrub_Card_Badge_Generator()
+    Dim rst As DAO.Recordset
+    Dim strSQL As String
+    Dim n As Integer
+    Dim NewBadge As String
+    
+    strSQL = "SELECT MAX(Scrub_Card.BadgeNum) AS BadgeNum FROM Scrub_Card"
+    Set rst = CurrentDb.OpenRecordset(strSQL)
+    n = 250
+
+    With rst
+        .MoveLast
+        Badge = .Fields("BadgeNum")
+    End With
+    Set rst = Nothing
+    
+    Do While n = 0
+        Badge = Badge + 1
+        CurrentDb.Execute "INSERT INTO Scrub_Card(BadgeNum) VALUES('" & Badge & "')", dbFailOnError
+        n = n - 1
+    Loop
+End Sub
