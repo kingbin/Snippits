@@ -1,4 +1,6 @@
 # Convert _svn folders to .svn within a directory and all subdirectories 
 find . -type d -name "_svn" | sed -e 'p;s/_svn/.svn/g' | xargs -n2 mv
 
+for i in `fgrep -rni "umcintranet" . | cut -d ":" -f1`; do sed -i[TEST] 's/umcintranet/intranet/g' $i; done
 
+fgrep -rni "umcintranet" . | cut -d ":" -f1,2
