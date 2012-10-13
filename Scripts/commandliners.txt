@@ -1,6 +1,7 @@
 # Convert _svn folders to .svn within a directory and all subdirectories 
 find . -type d -name "_svn" | sed -e 'p;s/_svn/.svn/g' | xargs -n2 mv
 
-for i in `fgrep -rni "umcintranet" . | cut -d ":" -f1`; do sed -i[TEST] 's/umcintranet/intranet/g' $i; done
-
-fgrep -rni "umcintranet" . | cut -d ":" -f1,2
+# txt replacement based on regex pattern found in files returned by fgrep
+# I like a more descriptive section block title than mvc4 produces
+for i in `fgrep -rni "@section Scripts" . | cut -d ":" -f1`; do sed -i 's/@section Scripts/@section JavaScriptIncludes/g' $i; done
+fgrep -rni "@section Scripts" . | cut -d ":" -f1,2
