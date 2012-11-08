@@ -11,6 +11,9 @@ h2. SQL
 
 SQL scripts I've written and again used for reference
 
+h2. Scripts
+
+Short little scripts to make my life a little better
 
 h2. Help out!
 
