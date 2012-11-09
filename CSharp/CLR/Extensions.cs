@@ -29,6 +29,7 @@ public static class MyExtensions
 
 
   // WinForm BackgroundProcess Safely Update Main Thread Control
+  // ex: lblStatus.SetPropertyThreadSafe( () => lblStatus.Text, String.Format( "Finished Processing File {0}", FileName ) );
     private delegate void SetPropertyThreadSafeDelegate<TResult>( Control @this, Expression<Func<TResult>> property, TResult value );
 
     public static void SetPropertyThreadSafe<TResult>( this Control @this, Expression<Func<TResult>> property, TResult value )
