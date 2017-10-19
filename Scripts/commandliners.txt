@@ -9,3 +9,7 @@ fgrep -rni "@section Scripts" . | cut -d ":" -f1,2
 # Spaces in the names
 #Add the -Z (aka --null) flag to grep, and the -0 (also aka --null) flag to xargs. This will output NUL terminated file names, and tell xargs to read NUL terminated arguments 
 fgrep -irlZ "1.0.21" . | xargs -0 sed -i 's/1.0.21/1.1.10/gI'
+
+
+# ON A MAC
+LC_CTYPE=C && LANG=C && find . -type f -exec sed -i "" "s/losing/winning/g" {} \; 
